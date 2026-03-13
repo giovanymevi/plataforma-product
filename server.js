@@ -5,11 +5,12 @@ const User = require('./models/User');
 const Product = require('./models/Product');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Conexión a MongoDB Atlas
 // IMPORTANTE: Reemplaza <db_password> por tu contraseña real de Atlas
-mongoose.connect('mongodb+srv://giovannymendozavillamizar1:Daewocielo1.@cluster0.ozvlt8g.mongodb.net/ecommerce?appName=Cluster0')
+const mongoUri = process.env.MONGODB_URI || 'mongodb+srv://giovannymendozavillamizar1:Daewocielo1.@cluster0.ozvlt8g.mongodb.net/ecommerce?appName=Cluster0';
+mongoose.connect(mongoUri)
     .then(() => console.log('✅ Conectado a MongoDB Atlas'))
     .catch(err => console.error('❌ Error conectando a MongoDB:', err));
 
